@@ -234,6 +234,7 @@ svg{display:block}
 }
 @keyframes sheet{from{opacity:0;transform:translateY(-6px)}}
 
+html.entry-complete :is(.nav .logo,.nav .links a,.nav .cta,.nav .menu,.headline span,.demo,.card,.wordmark){animation:none!important}
 </style>
 </head>
 <body>
@@ -288,5 +289,6 @@ svg{display:block}
   document.addEventListener('click',function(e){if(!nav.contains(e.target))set(false);});
 })();
 </script>
+<script>setTimeout(function(){document.documentElement.classList.add("entry-complete")},2300)</script>
 </body>
 </html>
