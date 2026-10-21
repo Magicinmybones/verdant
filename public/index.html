@@ -125,15 +125,24 @@ svg{display:block}
   width:min(calc(962*var(--u)), calc(100cqw - 480*var(--u)));color:#fff}
 .wm-svg{width:100%;height:auto;fill:currentColor}
 
-/* ---------- entrance motion (respecting reduced-motion) ---------- */
+/* ---------- one entrance, with the landscape held still ---------- */
 @media (prefers-reduced-motion:no-preference){
-  .headline span,.demo,.card,.wordmark{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
-  .headline span:nth-child(2){animation-delay:.06s}.demo{animation-delay:.14s}.card{animation-delay:.22s}.wordmark{animation-delay:.3s}
-  .hero-bg{animation:settle 1.6s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes verd-nav{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  @keyframes verd-line{from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(7px)}to{opacity:1;clip-path:inset(0);transform:none}}
+  @keyframes verd-link{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+  @keyframes verd-panel{from{opacity:0}to{opacity:1}}
+  @keyframes verd-mark{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0)}}
+  .nav .logo{animation:verd-nav .58s cubic-bezier(.2,.8,.2,1) .04s backwards}
+  .nav .links a{animation:verd-nav .46s cubic-bezier(.2,.8,.2,1) backwards}
+  .nav .links a:nth-child(1){animation-delay:.14s}.nav .links a:nth-child(2){animation-delay:.2s}
+  .nav .links a:nth-child(3){animation-delay:.26s}
+  .nav .cta,.nav .menu{animation:verd-nav .54s cubic-bezier(.2,.8,.2,1) .32s backwards}
+  .headline span{animation:verd-line .82s cubic-bezier(.16,.82,.22,1) backwards}
+  .headline span:first-child{animation-delay:.28s}.headline span:last-child{animation-delay:.42s}
+  .demo{animation:verd-link .55s cubic-bezier(.2,.8,.2,1) .72s backwards}
+  .card{animation:verd-panel .7s cubic-bezier(.2,.8,.2,1) .87s backwards}
+  .wordmark{animation:verd-mark .9s cubic-bezier(.16,.82,.22,1) 1.02s backwards}
 }
-@keyframes rise{from{opacity:0;transform:translateY(calc(18*var(--u)))}}
-@keyframes settle{from{transform:scale(1.04)}}
-.static *{animation:none!important;transition:none!important}
 
 /* =====================================================================
    PORTRAIT / NARROW — the composition reflows into a vertical stack.
@@ -202,7 +211,6 @@ svg{display:block}
   .ico-try{width:calc(14*var(--m))}
 
   .wordmark{position:relative;right:auto;bottom:auto;width:100%}
-  @keyframes rise{from{opacity:0;transform:translateY(calc(14*var(--m)))}}
 }
 /* large portrait (big tablets, vertical monitors): inline nav returns */
 @media (max-aspect-ratio:23/20) and (min-width:900px){
